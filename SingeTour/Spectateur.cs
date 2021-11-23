@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SingeTour
 {
-    internal class Spectateur
+    public class Spectateur
     {
         public string Nom { get; private set; }
 
@@ -14,38 +14,36 @@ namespace SingeTour
         {
             this.Nom = nom;
         }
-        public async Task ApplauditAsync()
+        public async Task ApplauditAsync(System.Threading.CancellationToken stopToken)
         {
-            System.Console.WriteLine($"Applaudit  start");
-            await Task.Delay(500);
-            System.Console.WriteLine($"Applaudit  end");
+            // Applaudit jusque a ce qu'on demmande d'arretter
+            try
+            {
+                while (true)
+                {
+                    await Task.Delay(1000, stopToken);
+                }
+            }
+            catch (TaskCanceledException ex)
+            {
+
+            }
+
         }
-        public async Task SiffleAsync()
+        public async Task SiffleAsync(System.Threading.CancellationToken stopToken)
         {
-            System.Console.WriteLine($"Siffle start");
-            await Task.Delay(500);
-            System.Console.WriteLine($"Siffle end");
+            //Siffle jusque a ce qu'on demmande d'arretter
+            try
+            {
+               while(true)
+                {
+                    await Task.Delay(1000, stopToken);
+                }                             
+            }catch (TaskCanceledException ex)
+            {
+
+            }
         }
-
-
-
-        //internal void ReagitAuTour(Tour tour, Singe singe)
-        //{
-        //    switch(tour.Type)
-        //    {
-        //        case TourType.Acrobatie: { Applaudit(tour, singe);break; }
-        //        case TourType.Musique: { Siffle(tour, singe); break; }
-        //    }
-        //}
-
-        //private void Applaudit(Tour tour, Singe singe)
-        //{
-        //    Console.WriteLine($"Spectateur {nameof(Applaudit)} pendant le tour de {tour.Type} \"{tour.Nom}\" du singe {nameof(singe)}");
-        //}
-        //private void Siffle(Tour tour, Singe singe)
-        //{            
-        //    Console.WriteLine($"Spectateur {nameof(Siffle)} pendant le tour de {tour.Type} \"{tour.Nom}\" du singe {nameof(singe)}");
-        //}
 
 
     }

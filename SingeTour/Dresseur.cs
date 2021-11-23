@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SingeTour
 {
-    internal class Dresseur
+    public class Dresseur
     {
         public Singe Singe { get; private set; }
 
